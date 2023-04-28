@@ -23,14 +23,15 @@ public class PlayerMovement : MonoBehaviour
     {
         rb = GetComponent<Rigidbody2D>();
         Debug.Log("Pref lvl 1: " + PlayerPrefs.GetFloat("volume"));
-        
+
     }
 
     // Update is called once per frame
     void Update()
     {
         // Para poner la preferencia del player y guardar cosas
-        if (Input.GetKey(KeyCode.E)) {
+        if (Input.GetKey(KeyCode.E))
+        {
             Debug.Log("Antes: " + PlayerPrefs.GetFloat("volume"));
             PlayerPrefs.SetFloat("volume", algo++);
             Debug.Log("Despues: " + PlayerPrefs.GetFloat("volume"));
