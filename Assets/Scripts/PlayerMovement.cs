@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Cinemachine;
 
 public class PlayerMovement : MonoBehaviour
 {
@@ -15,15 +16,14 @@ public class PlayerMovement : MonoBehaviour
     public Transform checkGround;
     public float checkRadius;
     public LayerMask groundMask;
-
-    private float algo = 1f;
+    //private float algo = 1f;
 
     // Start is called before the first frame update
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
         Debug.Log("Pref lvl 1: " + PlayerPrefs.GetFloat("volume"));
-
+        Debug.Log("Pref lvl 1 Vidas: " + PlayerPrefs.GetFloat("vidas"));
     }
 
     // Update is called once per frame
@@ -32,9 +32,12 @@ public class PlayerMovement : MonoBehaviour
         // Para poner la preferencia del player y guardar cosas
         if (Input.GetKey(KeyCode.E))
         {
-            Debug.Log("Antes: " + PlayerPrefs.GetFloat("volume"));
-            PlayerPrefs.SetFloat("volume", algo++);
-            Debug.Log("Despues: " + PlayerPrefs.GetFloat("volume"));
+            // Debug.Log("Antes: " + PlayerPrefs.GetFloat("volume"));
+            // PlayerPrefs.SetFloat("volume", algo++);
+            // Debug.Log("Despues: " + PlayerPrefs.GetFloat("volume"));
+
+            PlayerPrefs.SetFloat("vidas", 3);
+            Debug.Log(PlayerPrefs.GetFloat("vidas"));
         }
 
         isGrounded = Physics2D.OverlapCircle(checkGround.position, checkRadius, groundMask);
@@ -62,7 +65,6 @@ public class PlayerMovement : MonoBehaviour
         {
             isJumping = false;
         }
-
     }
 
     private void FixedUpdate()
