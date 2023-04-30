@@ -21,10 +21,6 @@ public class Level2Move : MonoBehaviour
         if (other.CompareTag("Player"))
         {
             StartCoroutine(LoadLevel(newLevel));
-
-            // Dont destroy on load player and virtual cam
-            //DontDestroyOnLoad(vcam);
-            //DontDestroyOnLoad(player);
         }
     }
 

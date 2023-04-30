@@ -16,7 +16,7 @@ public class PlayerMovement : MonoBehaviour
     public Transform checkGround;
     public float checkRadius;
     public LayerMask groundMask;
-    //private float algo = 1f;
+    private float algo = 1f;
 
     // Start is called before the first frame update
     void Start()
@@ -30,13 +30,13 @@ public class PlayerMovement : MonoBehaviour
     void Update()
     {
         // Para poner la preferencia del player y guardar cosas
-        if (Input.GetKey(KeyCode.E))
+        if (Input.GetKeyDown(KeyCode.E))
         {
             // Debug.Log("Antes: " + PlayerPrefs.GetFloat("volume"));
             // PlayerPrefs.SetFloat("volume", algo++);
             // Debug.Log("Despues: " + PlayerPrefs.GetFloat("volume"));
 
-            PlayerPrefs.SetFloat("vidas", 3);
+            PlayerPrefs.SetFloat("vidas", algo++);
             Debug.Log(PlayerPrefs.GetFloat("vidas"));
         }
 
