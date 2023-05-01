@@ -17,6 +17,8 @@ public class PlayerMovement : MonoBehaviour
     public float checkRadius;
     public LayerMask groundMask;
     private float algo = 1f;
+    public bool canMove = true;
+    private bool facingRight = true;
 
     // Start is called before the first frame update
     void Start()
@@ -29,6 +31,16 @@ public class PlayerMovement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        // Flip the Player facing right and left
+        if (moveInput > 0 && facingRight == false && canMove)
+        {
+            Flip();
+        }
+        else if (moveInput < 0 && facingRight == true && canMove)
+        {
+            Flip();
+        }
+
         // Para poner la preferencia del player y guardar cosas
         if (Input.GetKeyDown(KeyCode.E))
         {
@@ -71,5 +83,11 @@ public class PlayerMovement : MonoBehaviour
     {
         moveInput = Input.GetAxisRaw("Horizontal");
         rb.velocity = new Vector2(moveInput * speed, rb.velocity.y);
+    }
+
+    void Flip()
+    {
+        transform.localScale = new Vector3(-transform.localScale.x, transform.localScale.y, transform.localScale.z);
+        facingRight = !facingRight;
     }
 }
